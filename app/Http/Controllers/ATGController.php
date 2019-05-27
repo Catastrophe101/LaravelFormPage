@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\FormData;
+use App\Rules\EmailValidation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -29,7 +30,7 @@ class ATGController extends Controller
         //Below is the validation
         $validatorData = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:form_data'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:form_data',new EmailValidation()],
             'pincode' => ['required', 'integer', 'digits:6'],
         ]);
         //If error in data is found user is redirected to the form page with error message
