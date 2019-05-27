@@ -16,7 +16,7 @@ class CreateFormDataTable extends Migration
         Schema::create('form_data', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('email')->primary();
+            $table->string('email')->unique();
             $table->integer('pincode');
             $table->timestamps();
         });
