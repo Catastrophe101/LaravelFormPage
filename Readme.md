@@ -1,7 +1,7 @@
 ****Basic Laravel Form Page:****<br>
 Contains a form with 3 fields (Name,E-mail,Pincode)<br>
 **Validations added:**<br>
-E-mail is checked for unique<br>
+E-mail is checked for unique and format [a-z@a-z.a-z]<br>
 Pincode for 6 digits<br>
 Any field cannot be submitted empty<br>
 Currently configured to work with Xampp+Mysql<br>
