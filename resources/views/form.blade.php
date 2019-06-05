@@ -11,6 +11,7 @@
     jQuery(document).ready(function(){
         jQuery('#ajaxSubmit').click(function(e){
             e.preventDefault();
+            //clearing previous error
             document.getElementById("emailError").innerText="";
             document.getElementById("nameError").innerText="";
             document.getElementById("pincodeError").innerText="";
@@ -19,6 +20,7 @@
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                 }
             });
+            //making the ajax call
             jQuery.ajax({
                 url: "{{ url('/api/storeData') }}",
                 method: 'get',
@@ -28,7 +30,8 @@
                     pincode: jQuery('#pincode').val()
                 },
                 success: function(result){
-                     console.log(result);
+                     // console.log(result);
+                    //Status 0 indicates there was error
                     if(result.Status=="0") {
                         jQuery.each(result[0], function (key, val) {
                             var Element=document.getElementById(key+"Error");
@@ -36,6 +39,7 @@
                             Element.className="text-danger";
                         });
                     }else{
+                        //If no error then a success message is shown for 5 sec
                         var element = document.createElement("div");
                         element.id="successDiv"
                         element.appendChild(document.createTextNode(result.Message));
@@ -43,6 +47,7 @@
                         element.className="alert alert-success";
                         console.log(result.Message);
                         setTimeout(function(){
+                            //destroying the message of success after 5 sec
                             document.getElementById("successDiv").remove();
                         },5000);
                     }
