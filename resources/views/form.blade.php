@@ -41,7 +41,7 @@
                         console.log(result.Message);
                         setTimeout(function(){
                             document.getElementById("successDiv").remove();
-                        },50000);
+                        },5000);
                     }
                 }});
         });
