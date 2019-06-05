@@ -45,7 +45,7 @@
                         element.appendChild(document.createTextNode(result.Message));
                         document.getElementById('success').appendChild(element);
                         element.className="alert alert-success";
-                        console.log(result.Message);
+                        // console.log(result.Message);
                         setTimeout(function(){
                             //destroying the message of success after 5 sec
                             document.getElementById("successDiv").remove();
