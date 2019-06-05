@@ -10,8 +10,10 @@
 
     jQuery(document).ready(function(){
         jQuery('#ajaxSubmit').click(function(e){
-            console.log('start of script');
             e.preventDefault();
+            document.getElementById("emailError").innerText="";
+            document.getElementById("nameError").innerText="";
+            document.getElementById("pincodeError").innerText="";
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -29,10 +31,11 @@
                      console.log(result);
                     if(result.Status=="0") {
                         jQuery.each(result[0], function (key, val) {
-                            document.getElementById(key).insertAdjacentHTML('afterend', '<div class="text-danger">' + val + '</div>')
+                            var Element=document.getElementById(key+"Error");
+                            Element.innerText=val;
+                            Element.className="text-danger";
                         });
                     }else{
-                        // document.getElementById('success').insert(result.Message);
                         var element = document.createElement("div");
                         element.id="successDiv"
                         element.appendChild(document.createTextNode(result.Message));
@@ -81,12 +84,13 @@
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"  autocomplete="name" autofocus>
-
+                                    <div id="nameError">
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -94,12 +98,13 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
-
+                                    <div id="emailError">
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
+                                </div>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -107,12 +112,13 @@
 
                                 <div class="col-md-6">
                                     <input id="pincode" type="text" class="form-control @error('pincode') is-invalid @enderror" value="{{ old('pincode') }}" name="pincode"  autocomplete="pincode">
-
+                                    <div id="pincodeError">
                                     @error('pincode')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>"{{$message}}"</strong>
                                     </span>
                                     @enderror
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row mb-0">
