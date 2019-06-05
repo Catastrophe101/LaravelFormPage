@@ -27,7 +27,7 @@
                 },
                 success: function(result){
                      console.log(result);
-                    if(typeof result.Status=="0") {
+                    if(result.Status=="0") {
                         jQuery.each(result[0], function (key, val) {
                             document.getElementById(key).insertAdjacentHTML('afterend', '<div class="text-danger">' + val + '</div>')
                         });
