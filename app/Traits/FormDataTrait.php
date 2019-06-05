@@ -12,7 +12,7 @@ trait FormDataTrait
     {
         $validatorData = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:form_data',new EmailValidation()],
+            'email' => ['required', 'string', 'max:255', 'unique:form_data',new EmailValidation()],
             'pincode' => ['required', 'integer', 'digits:6'],
         ]);
         return $validatorData;
