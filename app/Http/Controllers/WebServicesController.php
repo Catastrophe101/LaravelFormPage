@@ -11,7 +11,7 @@ class WebServicesController extends Controller
     function store(Request $request){
         $validatorData=$this->validateData($request);
         if ($validatorData->fails()) {
-            return response()->json(['Status'=>0,$validatorData->messages()], 400);
+            return response()->json(['Status'=>0,$validatorData->messages()], 200);
         }else {
             $this->storeData($request);
             return response()->json(['Status'=>1,'Message'=>"Data save successful"], 200);
